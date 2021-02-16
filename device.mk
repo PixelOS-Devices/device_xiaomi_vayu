@@ -382,12 +382,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service-qti \
-    android.hardware.power.stats@1.0-service.mock \
-    vendor.qti.hardware.perf@2.2.vendor
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/perf/perfboostsconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfboostsconfig.xml
+    android.hardware.power-service.xiaomi-libperfmgr
 
 # Public libraries
 PRODUCT_COPY_FILES += \
@@ -436,7 +431,10 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/xiaomi
     vendor/qcom/opensource/commonsys/packages/apps/Bluetooth \
-    vendor/qcom/opensource/commonsys/system/bt/conf
+    vendor/qcom/opensource/commonsys/system/bt/conf \
+    hardware/xiaomi \
+    hardware/google/interfaces \
+    hardware/google/pixel
 
 # NeuralNetworks
 PRODUCT_PACKAGES += \
