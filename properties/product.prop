@@ -19,3 +19,6 @@ ro.lmk.log_stats=true
 # Transcoding related property.
 debug.media.transcoding.codec_max_operating_rate_720P=240
 debug.media.transcoding.codec_max_operating_rate_1080P=120
+
+# CABC
+persist.lcd.cabc_mode=1
