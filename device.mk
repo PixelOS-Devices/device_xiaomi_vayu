@@ -333,6 +333,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.lights-service.vayu
 
+# LiveDisplay
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@2.0-service-sdm \
+    vendor.lineage.livedisplay@2.1-service.vayu
+
 # Media
 PRODUCT_PACKAGES += \
     libavservices_minijail \
