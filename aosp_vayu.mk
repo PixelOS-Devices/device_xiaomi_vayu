@@ -14,6 +14,8 @@ $(call inherit-product, device/xiaomi/vayu/device.mk)
 # Inherit common PixelOS configurations
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
+TARGET_SUPPORTS_QUICK_TAP := true
+
 PRODUCT_NAME := aosp_vayu
 PRODUCT_DEVICE := vayu
 PRODUCT_BRAND := POCO
