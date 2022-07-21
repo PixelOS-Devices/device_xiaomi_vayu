@@ -11,7 +11,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit device configurations
 $(call inherit-product, device/xiaomi/vayu/device.mk)
 
-# Inherit common ArrowOS configurations
+# Inherit common PixelOS configurations
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
 TARGET_SUPPORTS_QUICK_TAP := true
