@@ -91,8 +91,6 @@ ifeq ($(TARGET_PREBUILT_KERNEL),)
   TARGET_KERNEL_CLANG_COMPILE := true
   TARGET_KERNEL_SOURCE := kernel/xiaomi/vayu
   TARGET_KERNEL_ADDITIONAL_FLAGS += HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
-  TARGET_KERNEL_CLANG_VERSION := proton
-  TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/proton-clang
   TARGET_KERNEL_LLVM_BINUTILS := false
 endif
 
