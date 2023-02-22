@@ -119,6 +119,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
    libstdc++.vendor
 
+$(call inherit-product-if-exists, vendor/xiaomi/miuicamera/config.mk)
+
 # Charger
 PRODUCT_PACKAGES += \
     libsuspend
