@@ -304,7 +304,6 @@ vendor/etc/camera/eyelineblush.cng
 vendor/etc/camera/golden_rear_dc_cal_wt.bin
 vendor/etc/camera/golden_rear_dc_cal_wu.bin
 vendor/etc/camera/hdr_ui9_params.config
-vendor/etc/camera/megviifacepp_0_5_2_model|1f0cdc706d3853114ecf7a2c0c7436238fcdf258
 vendor/etc/camera/model_back.dlc
 vendor/etc/camera/model_front.dlc
 vendor/etc/camera/model_front_mibokeh_video.dlc
@@ -320,6 +319,11 @@ vendor/etc/camera/visidon_clearshot_params_algoup.xml
 
 # Camera firmware
 vendor/firmware/CAMERA_ICP.elf
+
+# Camera Megvii from miui_VAYUINGlobal_V12.5.6.0.RJUINXM_448b9400c2_11.0.zip
+vendor/etc/camera/megviifacepp_0_5_2_model|1f0cdc706d3853114ecf7a2c0c7436238fcdf258
+vendor/lib64/libMegviiFacepp-0.5.2.so|4dce8e04d919df9434d2444c7687328018a6e34f
+vendor/lib64/libmegface.so|e32055dc224076c8a7e8486292341c4604a12787
 
 # CDSP
 vendor/bin/cdsprpcd
