@@ -26,6 +26,43 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+
+/*
+Changes from Qualcomm Innovation Center are provided under the following license:
+
+Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted (subject to the limitations in the
+disclaimer below) provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+
+    * Redistributions in binary form must reproduce the above
+      copyright notice, this list of conditions and the following
+      disclaimer in the documentation and/or other materials provided
+      with the distribution.
+
+    * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+      contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
+
+NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #ifndef GNSS_ADAPTER_H
 #define GNSS_ADAPTER_H
 
@@ -39,6 +76,9 @@
 #include <XtraSystemStatusObserver.h>
 #include <map>
 #include <functional>
+#include <loc_misc_utils.h>
+#include <queue>
+#include <NativeAgpsHandler.h>
 
 #define MAX_URL_LEN 256
 #define NMEA_SENTENCE_MAX_LENGTH 200
@@ -146,6 +186,7 @@ typedef struct {
     TuncConfigInfo tuncConfigInfo;
     PaceConfigInfo paceConfigInfo;
     RobustLocationConfigInfo robustLocationConfigInfo;
+    LeverArmConfigInfo  leverArmConfigInfo;
 } LocIntegrationConfigInfo;
 
 using namespace loc_core;
@@ -164,13 +205,10 @@ typedef std::function<void(
 )> QDgnssSessionActiveCb;
 
 struct CdfwInterface {
-    void (*startDgnssApiService)();
-
+    void (*startDgnssApiService)(const MsgTask& msgTask);
     QDgnssListenerHDL (*createUsableReporter)(
             QDgnssSessionActiveCb sessionActiveCb);
-
     void (*destroyUsableReporter)(QDgnssListenerHDL handle);
-
     void (*reportUsable)(QDgnssListenerHDL handle, bool usable);
 };
 
@@ -178,6 +216,23 @@ typedef uint16_t  DGnssStateBitMask;
 #define DGNSS_STATE_ENABLE_NTRIP_COMMAND      0X01
 #define DGNSS_STATE_NO_NMEA_PENDING           0X02
 #define DGNSS_STATE_NTRIP_SESSION_STARTED     0X04
+
+class GnssReportLoggerUtil {
+public:
+    typedef void (*LogGnssLatency)(const GnssLatencyInfo& gnssLatencyMeasInfo);
+
+    GnssReportLoggerUtil() : mLogLatency(nullptr) {
+        const char* libname = "liblocdiagiface.so";
+        void* libHandle = nullptr;
+        mLogLatency = (LogGnssLatency)dlGetSymFromLib(libHandle, libname, "LogGnssLatency");
+    }
+
+    bool isLogEnabled();
+    void log(const GnssLatencyInfo& gnssLatencyMeasInfo);
+
+private:
+    LogGnssLatency mLogLatency;
+};
 
 class GnssAdapter : public LocAdapterBase {
 
@@ -260,6 +315,12 @@ class GnssAdapter : public LocAdapterBase {
     BlockCPIInfo mBlockCPIInfo;
     bool mPowerOn;
     uint32_t mAllowFlpNetworkFixes;
+    std::queue<GnssLatencyInfo> mGnssLatencyInfoQueue;
+    GnssReportLoggerUtil mLogger;
+    bool mDreIntEnabled;
+
+    /* === NativeAgpsHandler ======================================================== */
+    NativeAgpsHandler mNativeAgpsHandler;
 
     /* === Misc callback from QMI LOC API ============================================== */
     GnssEnergyConsumedCallback mGnssEnergyConsumedCb;
@@ -268,10 +329,10 @@ class GnssAdapter : public LocAdapterBase {
     /*==== CONVERSION ===================================================================*/
     static void convertOptions(LocPosMode& out, const TrackingOptions& trackingOptions);
     static void convertLocation(Location& out, const UlpLocation& ulpLocation,
-                                const GpsLocationExtended& locationExtended,
-                                const LocPosTechMask techMask);
+                                const GpsLocationExtended& locationExtended);
     static void convertLocationInfo(GnssLocationInfoNotification& out,
-                                    const GpsLocationExtended& locationExtended);
+                                    const GpsLocationExtended& locationExtended,
+                                    loc_sess_status status);
     static uint16_t getNumSvUsed(uint64_t svUsedIdsMask,
                                  int totalSvCntInThisConstellation);
 
@@ -293,9 +354,10 @@ protected:
     /* ==== CLIENT ========================================================================= */
     virtual void updateClientsEventMask();
     virtual void stopClientSessions(LocationAPI* client);
+    inline void setNmeaReportRateConfig();
+    void logLatencyInfo();
 
 public:
-
     GnssAdapter();
     virtual inline ~GnssAdapter() { }
 
@@ -383,6 +445,8 @@ public:
     void deleteAidingData(const GnssAidingData &data, uint32_t sessionId);
     void gnssUpdateXtraThrottleCommand(const bool enabled);
     std::vector<LocationError> gnssUpdateConfig(const std::string& oldMoServerUrl,
+            const std::string& moServerUrl,
+            const std::string& serverUrl,
             GnssConfig& gnssConfigRequested,
             GnssConfig& gnssConfigNeedEngineUpdate, size_t count = 0);
 
@@ -437,6 +501,8 @@ public:
     inline void antennaInfoCloseCommand() { mIsAntennaInfoInterfaceOpened = false; }
     uint32_t configMinGpsWeekCommand(uint16_t minGpsWeek);
     uint32_t configDeadReckoningEngineParamsCommand(const DeadReckoningEngineConfig& dreConfig);
+    uint32_t configEngineRunStateCommand(PositioningEngineMask engType,
+                                         LocEngineRunState engState);
 
     /* ========= ODCPI ===================================================================== */
     /* ======== COMMANDS ====(Called from Client Thread)==================================== */
@@ -458,6 +524,8 @@ public:
     void odcpiTimerExpireEvent();
 
     /* ==== REPORTS ======================================================================== */
+    virtual void handleEngineLockStatusEvent(EngineLockState engineLockState);
+    void handleEngineLockStatus(EngineLockState engineLockState);
     /* ======== EVENTS ====(Called from QMI/EngineHub Thread)===================================== */
     virtual void reportPositionEvent(const UlpLocation& ulpLocation,
                                      const GpsLocationExtended& locationExtended,
@@ -492,6 +560,13 @@ public:
     virtual bool reportGnssAdditionalSystemInfoEvent(
             GnssAdditionalSystemInfo& additionalSystemInfo);
     virtual void reportNfwNotificationEvent(GnssNfwNotification& notification);
+    virtual void reportLatencyInfoEvent(const GnssLatencyInfo& gnssLatencyInfo);
+    virtual bool reportQwesCapabilities
+    (
+        const std::unordered_map<LocationQwesFeatureType, bool> &featureMap
+    );
+    void reportPdnTypeFromWds(int pdnType, AGpsExtType agpsType, std::string apnName,
+            AGpsBearerType bearerType);
 
     /* ======== UTILITIES ================================================================= */
     bool needReportForGnssClient(const UlpLocation& ulpLocation,
@@ -567,6 +642,8 @@ public:
     static void convertGnssSvIdMaskToList(
             uint64_t svIdMask, std::vector<GnssSvIdSource>& svIds,
             GnssSvId initialSvId, GnssSvType svType);
+    static void computeVRPBasedLla(const UlpLocation& loc, GpsLocationExtended& locExt,
+                                   const LeverArmConfigInfo& leverArmConfigInfo);
 
     void injectLocationCommand(double latitude, double longitude, float accuracy);
     void injectLocationExtCommand(const GnssLocationInfoNotification &locationInfo);
@@ -590,6 +667,7 @@ public:
     void setSuplHostServer(const char* server, int port, LocServerType type);
     void notifyClientOfCachedLocationSystemInfo(LocationAPI* client,
                                                 const LocationCallbacks& callbacks);
+    LocationCapabilitiesMask getCapabilities();
     void updateSystemPowerStateCommand(PowerStateType systemPowerState);
 
     /*==== DGnss Usable Report Flag ====================================================*/
