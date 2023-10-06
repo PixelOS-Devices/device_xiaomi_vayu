@@ -1153,6 +1153,13 @@ vendor/lib64/vendor.qti.hardware.scve.panorama@1.0.so|cf6b6d647f98448f234f5d115c
 -vendor/lib/libthermalclient.so
 -vendor/lib64/libthermalclient.so
 
+# Thermal - from cheetah-user-13-TQ3A.230705.001-10216780-release-keys
+-vendor/etc/vintf/manifest/android.hardware.thermal@2.0-service.pixel.xml|1d8dff01b6932d39c6c8ed28e760a2b187df2c81
+vendor/bin/hw/android.hardware.thermal@2.0-service.pixel|4a09035146a1cc757e694dd642aaa0a64785ab39
+vendor/bin/thermal_symlinks|00524ee285114b877862327ddf73a5157ffad17d
+vendor/etc/init/android.hardware.thermal@2.0-service.pixel.rc|9519b637cbf93160ce471bdfd54cb3f7ae352d4f
+vendor/etc/init/pixel-thermal-symlinks.rc|e90e0c18dc0989c566ed20e9ccb63056bbf0f03d
+
 # Thermal - from coral-user-13-TP1A.220905.004-8927612-release-keys
 vendor/bin/thermal-engine|d77881eaf15c84f6b8e9a68087aa360347ed922a
 
