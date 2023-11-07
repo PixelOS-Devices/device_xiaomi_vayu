@@ -528,10 +528,10 @@ vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so|63c3bf47418490c3172c
 # GNSS - from LA.UM.9.1.r1-12900-SMxxx0.0
 vendor/bin/loc_launcher|be9f321e7c03e038749239ae4accd3db00949e2c
 vendor/bin/lowi-server|d94ebcc5499e0624f941bbf3a7aa259891513cd0
-vendor/bin/slim_daemon|2eef3832875b39a0095b6147334a085f4e3a0697
+vendor/bin/slim_daemon|5b863b101ace7d55cc174fca6d5cd562a7727873
 vendor/bin/xtra-daemon|36df53948c13655ff5ff5b76882f28f9a4d039a8
 -vendor/etc/vintf/manifest/vendor.qti.gnss@4.0-service.xml|6514b13f55abc0acc28e004c35ff93fb972d61a9
-vendor/lib64/hw/vendor.qti.gnss@4.0-impl.so|4f7dc0ed3f65a0d79ffdd94fa2e5ecd2ecbdd21f
+vendor/lib64/hw/vendor.qti.gnss@4.0-impl.so|3d358effa46123a84057a821816c44dc2506a6b5
 vendor/lib64/libcdfw.so|55d33db3a8339cf4e051b5d8ce615712a19612d7
 vendor/lib64/libcdfw_remote_api.so|faaf6c57e4c1c40d5e604d6932704bf63d883e96
 vendor/lib64/libdataitems.so|ac2c6975b584bdf745d09b15aeb3fd3445ab1b71
@@ -540,12 +540,12 @@ vendor/lib64/libgnss.so|148e0088e7a7bad8e9e7462978269e5345d5be07
 vendor/lib64/libgps.utils.so|217bda3975df185f095467150605791c59af3805
 vendor/lib64/libizat_client_api.so|5e9998cbcf7d220d5b3080ed1ba352d3656e0ecf
 vendor/lib64/libizat_core.so|cdb3bf89857e2630b49085d33dcae4675d3700d0
-vendor/lib64/liblbs_core.so|15191704136bd0b4258cb46be2c17fd9dec15df2
-vendor/lib64/libloc_api_v02.so|9af95fb5c5d90adda889a31cf78a6bf1ba1c1fc6
+vendor/lib64/liblbs_core.so|80733e0ddea4cc6b70b6f7b298b4f41fe974aef4
+vendor/lib64/libloc_api_v02.so|655a5c38f3e0ed6d217358ee4a16521c350ddd48
 vendor/lib64/libloc_core.so|0d0fde0b6580998fe224ac795a64aeb4f9ceef59
 vendor/lib64/libloc_socket.so|347eebf332c92d52516e70a89bce3211de0f98df
 vendor/lib64/liblocation_api.so|300b197e3c481cc8ac951652415d914478dacce8
-vendor/lib64/liblocationservice.so|3470dd742a7ef53a6733db98aa405eaa2bfc59e0
+vendor/lib64/liblocationservice.so|5df6dfe1fd322fb1f9f5c6d3edbcc6004a046265
 vendor/lib64/liblocationservice_glue.so|6b6337abc6caadbd78d19712a0b3e0d18173c6f2
 vendor/lib64/liblowi_client.so|79772b0b4a8c08c22480f3513a2fb4a316143328
 vendor/lib64/liblowi_wifihal.so|d0d187f91e03ebec553545847bcad53fb4f2ee56
@@ -826,13 +826,13 @@ vendor/lib64/vendor.qti.hardware.qccvndhal@1.0.so|01b1d11316f5dcd8c1012a55ff0139
 # QMI - from LA.UM.9.1.r1-12900-SMxxx0.0
 system/etc/permissions/privapp-permissions-qti.xml|3eda27003bad39514039190d0d7eb675ba034cb9
 vendor/bin/irsc_util|121deb2d6fd21b122c6a8ca8b30ef167f6b90f61
-vendor/bin/pd-mapper|f8e54297f63af0685555722b0327d6b4d24f86bc
+vendor/bin/pd-mapper|089a733aa7e5afc81c50deb77dea100cfd2ef6c1
 vendor/bin/qrtr-ns|2b84b77bcd50e8c65c2151457f885eb434af4585
 vendor/lib/libdiag.so|94d20d63203eb134bcc4deb484b71dae174414e2
 vendor/lib/libdsutils.so|471aa6d37cff3609cf29bf748496e60018ef96e4
 vendor/lib/libidl.so|f91eebf917150514da6c111de6c66805bed3f6c8
 vendor/lib/libmdmdetect.so|0105abde3eead7e5292d1c0823327f0969751e88
-vendor/lib/libqmi.so|1373b956b34e1e9af7b2773ec2e41e410f3896cf
+vendor/lib/libqmi.so|437c5b030705fa1c57afd99ed547a83ffe1a4852
 vendor/lib/libqmi_cci.so|562adb68874a9089532264f18e1c56b6f489f6ff
 vendor/lib/libqmi_client_helper.so|7577d836dcbc518a2918cc96db9f86ed0756167f
 vendor/lib/libqmi_client_qmux.so|08efbaeb9119d305aacbdfc697d07c192de03abd
@@ -845,7 +845,7 @@ vendor/lib64/libdsutils.so|9a9260a111c41c1d7107eb6fb48c2402257d473f
 vendor/lib64/libidl.so|857f7a75a51ade7d3621f7fa6da0e9461244ca01
 vendor/lib64/libmdmdetect.so|4dee2a700aad658f3f30a6da069c867307ed371c
 vendor/lib64/libpdmapper.so|67ccdbc6de7c34354745fe5d3e66bb2dee76cc8d
-vendor/lib64/libqmi.so|0899b0d045a5c5801da324e3359dea2654c9dfbe
+vendor/lib64/libqmi.so|985f400b778c83ab53272144836019a42fb88224
 vendor/lib64/libqmi_cci.so|4d48845f07742c7084920bf8c5a2cfcf7364daec
 vendor/lib64/libqmi_client_helper.so|b49679c48c9573f0121637c4f1e1e026c2392b8f
 vendor/lib64/libqmi_client_qmux.so|4d74a8417f25617f061160163dca32730608e042
@@ -866,9 +866,9 @@ system_ext/framework/qti-telephony-common.jar|f3d8ea6d54ef1c0c00ec05ecbdb8b12cfc
 -system_ext/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk|60af440aae61fcd6939af56a0b94d9b9ef5ebd55
 vendor/bin/hw/qcrild|77d0168fbad7db01eec8abd9df25f19c05411eb4
 vendor/bin/adpl|7a0f18e1762bb972e87c4a21a787f56f15ebeb1b
-vendor/bin/netmgrd|fefdecf2ca2da0de30b86ddc3774729c5693aceb
+vendor/bin/netmgrd|9827c715565263148c71fd8f15d153d834de6337
 vendor/bin/qti|415d66b2cf1a7bf8fd3a5b471a6f52b02643f0bb
-vendor/bin/rmt_storage|7c6de0012d6150cf6f7a1944e91dcac9778d89f0
+vendor/bin/rmt_storage|0e1489af178344c9a42338e7cb52f2cdd7ace573
 vendor/bin/tftp_server|e923ea529ac0000e4c5b5de1d887d39f26876004
 vendor/etc/data/dsi_config.xml|85f76668d6b6f87402c534f284c286676edefa93
 vendor/etc/data/netmgr_config.xml|f5d263abc394c1a770d7464b86c5b0c590523c9b
@@ -879,11 +879,11 @@ vendor/etc/init/qcrild.rc|17cf4934bf443cf6469d8b3ff622eeb0e4a0aac6
 vendor/etc/init/vendor.qti.rmt_storage.rc|bc212c6353c2ded44ae4d759605fbbe55aa4fa3f
 vendor/etc/init/vendor.qti.tftp.rc|b27f188cbffba470a4510d50e46ff7c8446c22cb
 vendor/lib64/deviceInfoServiceModule.so|e460b52183f4dcfb47904a70dfab987b3704ed57
-vendor/lib64/libconfigdb.so|60b703bd94b237d3b35c455e79b4cfecd5a00ae7
-vendor/lib64/libdsi_netctrl.so|96b8fc890d40105089579eec58acb56858bc57ef
-vendor/lib64/liblqe.so|e2775b915760d6ad3d8355080a62019c3efa8e3b
-vendor/lib64/libnetmgr.so|ad56163e882d190e6508cefdc25892a6b0e74ae4
-vendor/lib64/libnetmgr_common.so|39763df6d5b9be02937b4ba36af0f34cf18a144f
+vendor/lib64/libconfigdb.so|8d825670cba528efe3c9e65216825c49aaee38bb
+vendor/lib64/libdsi_netctrl.so|cbcb7e1d782f4719b3fe1f8212447df87672d045
+vendor/lib64/liblqe.so|e8ab8469737a88c0334acfc099a234cd43ea447d
+vendor/lib64/libnetmgr.so|7be84d104ca9916202fd7f05704653a09386f2f3
+vendor/lib64/libnetmgr_common.so|d9cb685a481ab5d5c4fdb105b203848d1db0fd8f
 vendor/lib64/libnetmgr_nr_fusion.so|20190a7d4b72256f3d9040fab81d3e2212656c4d
 vendor/lib64/libnetmgr_rmnet_ext.so|1000e8b6d18fcce18f8f13b39e3a9207a93a991f
 vendor/lib64/libnlnetmgr.so|230fdf3b3246fec6e9a31c44bbf39ef267603cdd
@@ -891,9 +891,9 @@ vendor/lib64/libpdnotifier.so|f7921455da0719e073a7bcc5ce851ff9e43e79d4
 vendor/lib64/libqcmaputils.so|4271e28543306040ec22fa9e2f42f09a513457a4
 vendor/lib64/libqcrilFramework.so|7d3a2dc8b2f010bfa887deb79f4a05f4473a6951
 vendor/lib64/libqcrildatactl.so|6f7c9bce8fc62fd00c9bf527895089332500fd92
-vendor/lib64/libqdi.so|6c983bc7c46efa0fbc9e59025d960c9e5a2a7d61
+vendor/lib64/libqdi.so|08eaf3c7640ff06f06827f4e89a110f71f126eae
 vendor/lib64/libqdp.so|55cabaf9021a8f8f22b76ba7f8dca7299c0b21ab
-vendor/lib64/libril-qc-hal-qmi.so|93da49673e82ab8cee5b494539ddbc290b1859e3
+vendor/lib64/libril-qc-hal-qmi.so|f6b18fbbc2cc16834b34aa7a18f4ff0b21826bdf
 vendor/lib64/libril-qc-logger.so|c3a3d02b10de4da0358ae497d3dbd2ce9c7e2a8e
 vendor/lib64/librilqmiservices.so|ad3512fa14ca5231fed6926d48b94633cebb8adf
 vendor/lib64/libsystem_health_mon.so|2cc55d78ea00b9fe8af9cd88fd8ef8c31ee5f494
