@@ -29,6 +29,30 @@
 
 target=`getprop ro.board.platform`
 
+function configure_memory_parameters() {
+    # Set Memory parameters.
+    #
+    # Set per_process_reclaim tuning parameters
+    # All targets will use vmpressure range 50-70,
+    # All targets will use 512 pages swap size.
+    #
+    # Set Low memory killer minfree parameters
+    # 32 bit Non-Go, all memory configurations will use 15K series
+    # 32 bit Go, all memory configurations will use uLMK + Memcg
+    # 64 bit will use Google default LMK series.
+    #
+    # Set ALMK parameters (usually above the highest minfree values)
+    # vmpressure_file_min threshold is always set slightly higher
+    # than LMK minfree's last bin value for all targets. It is calculated as
+    # vmpressure_file_min = (last bin - second last bin ) + last bin
+    #
+    # Set allocstall_threshold to 0 for all targets.
+    #
+
+    echo 0 > /proc/sys/vm/page-cluster
+    echo 100 > /proc/sys/vm/swappiness
+}
+
 case "$target" in
     "msmnile")
     # Core control parameters for gold
@@ -64,15 +88,22 @@ case "$target" in
     echo 10 > /proc/sys/kernel/sched_group_downmigrate
     echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
 
+    # Turn off scheduler boost at the end
+    echo 0 > /proc/sys/kernel/sched_boost
+
     # configure governor settings for silver cluster
+    echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
     echo 1209600 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
+    echo 576000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
     echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/pl
 
     # configure governor settings for gold cluster
+    echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
     echo 1612800 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
     echo 1 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/pl
 
     # configure governor settings for gold+ cluster
+    echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
     echo 1612800 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
     echo 1 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/pl
 
@@ -85,6 +116,7 @@ case "$target" in
     # Disable wsf, beacause we are using efk.
     # wsf Range : 1..1000 So set to bare minimum value 1.
     echo 1 > /proc/sys/vm/watermark_scale_factor
+
 
     # Enable bus-dcvs
     for device in /sys/devices/platform/soc
@@ -143,6 +175,16 @@ case "$target" in
     # device/target specific folder
     setprop vendor.dcvs.prop 1
 
+    echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
+    configure_memory_parameters
+
+    ;;
+esac
+
+# Post-setup services
+case "$target" in
+    "msm8909" | "msm8916" | "msm8937" | "msm8952" | "msm8953" | "msm8994" | "msm8992" | "msm8996" | "msm8998" | "sdm660" | "apq8098_latv" | "sdm845" | "sdm710" | "msmnile" | "msmsteppe" | "sm6150" | "kona" | "lito" | "trinket" | "atoll" | "bengal" | "sdmshrike")
+        setprop vendor.post_boot.parsed 1
     ;;
 esac
 
