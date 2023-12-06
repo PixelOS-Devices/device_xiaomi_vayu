@@ -15,7 +15,11 @@
      limitations under the License.
 -->
 <resources>
-     <!-- Ambient settings -->
+
+    <string name="on">Вкл</string>
+    <string name="off">Выкл</string>
+
+    <!-- Ambient settings -->
     <string name="ambient_enable">Использовать индикацию событий</string>
      
     <!-- Thermal Profiles -->
@@ -74,8 +78,10 @@
     <string name="dirac_preset_country">Кантри</string>
     <string name="dirac_preset_dance">Танцевальная</string>
     <string name="dirac_preset_metal">Металл</string>
+    <string name="dirac_preset_bass_booster">Усиление баса</string>
+
     <!-- Dirac : QS tile title -->
-    <string name="dirac_qs_tile_title">Dirac звук</string>
+    <string name="dirac_qs_tile_title">Улучние звука Dirac</string>
 
     <!-- Clear Speaker -->
     <string name="clear_speaker_title">Очистка динамика</string>
@@ -86,4 +92,22 @@
     <string name="raise_to_wake_gesture_title">Поднимите, чтобы разбудить</string>
     <string name="raise_to_wake_gesture_summary">Разбудить устройство вместо пульсирующего уведомления</string>
      
+     <!-- Haptic Level Settings -->
+     <string name="haptic_title">Тактильный отклик</string>
+     <string name="haptic_level_title">Сила отклика</string>
+     <string name="haptic_level_summary">Сила интенсивности тактильного отклика</string>
+     <string name="haptic_level_summary_incompatible">Функция не поддерживается ядром</string>
+
+     <!-- Refresh Rate tile -->
+    <string name="refresh_rate_tile_title">Частота обновления экрана</string>
+
+     <!-- Per app maximum refresh rate -->
+    <string name="refresh_title">Настройка частоты обновления экрана</string>
+    <string name="refresh_summary">Настройка максимальной частоты обновления для каждого приложения</string>
+    <string name="refresh_default">Пол умолчанию</string>
+    <string name="refresh_low">30Гц</string>
+    <string name="refresh_moderate">50Гц</string>
+    <string name="refresh_medium">60Гц</string>
+    <string name="refresh_high">90Гц</string>
+    <string name="refresh_extreme">120Гц</string>
 </resources>
