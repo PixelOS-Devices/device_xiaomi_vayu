@@ -81,7 +81,7 @@
     <string name="dirac_preset_bass_booster">Усиление баса</string>
 
     <!-- Dirac : QS tile title -->
-    <string name="dirac_qs_tile_title">Улучние звука Dirac</string>
+    <string name="dirac_qs_tile_title">Улучшение звука Dirac</string>
 
     <!-- Clear Speaker -->
     <string name="clear_speaker_title">Очистка динамика</string>
@@ -104,7 +104,7 @@
      <!-- Per app maximum refresh rate -->
     <string name="refresh_title">Настройка частоты обновления экрана</string>
     <string name="refresh_summary">Настройка максимальной частоты обновления для каждого приложения</string>
-    <string name="refresh_default">Пол умолчанию</string>
+    <string name="refresh_default">По умолчанию</string>
     <string name="refresh_low">30Гц</string>
     <string name="refresh_moderate">50Гц</string>
     <string name="refresh_medium">60Гц</string>
