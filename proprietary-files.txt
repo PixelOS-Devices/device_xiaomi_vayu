@@ -464,17 +464,12 @@ vendor/lib64/com.qualcomm.qti.dpm.api@1.0.so|d9f1aa7f93b928f42499d613d20ccbc60f2
 vendor/lib64/libdpmqmihal.so|41eb89e66ba065c43a5eb79cd3c72cef0ee167aa
 
 # DRM - from LA.UM.9.1.r1-12900-SMxxx0.0
-vendor/bin/hw/vendor.qti.hardware.qseecom@1.0-service|d3d6ed383483747f8bec574adcac1c24ef1ac3a4
 vendor/bin/qseecomd|6d039e936dc833fbac9c121ca19c885b0066e555
 vendor/etc/init/qseecomd.rc|0ebfb7c5d1d2459be4fdac951a182dc486f3bda7
-vendor/etc/init/vendor.qti.hardware.qseecom@1.0-service.rc|0f43244d70d5efc1e4f089b926a9dc4f59e53db1
 vendor/etc/gpfspath_oem_config.xml|7aeade35b0bbe27530f6aca8c1ed5192a7acf59d
-vendor/lib64/hw/vendor.qti.hardware.qseecom@1.0-impl.so|8ea0cfc08930bd0d93f2e6b0e53ca9151870db7c
 vendor/lib64/libGPreqcancel.so|b9efbc8623981e1249ad0a0f8964b2b655d2b334
 vendor/lib64/libGPreqcancel_svc.so|897a58845264ab512ee3a1041e608c8f16275556
 vendor/lib64/libQSEEComAPI.so|480bc3683426708cc91d45b1e1ab23e716540b46
-vendor/lib64/libSecureUILib.so|a46edde15128b5a26ce3b273778652e5663c6628
-vendor/lib64/libStDrvInt.so|6091f1f496b87730f9a77e9ede504c4fa99c608a
 vendor/lib64/libcpion.so|542fd1114d09ec5c0d6d8e44ed925a0ee226ce94
 vendor/lib64/libdrmfs.so|2e000862d1dba971796ba1223352af519ab86229
 vendor/lib64/libdrmtime.so|d7460a3d0d0a9ccc044688f960ca4b9c3c05cfd5
@@ -483,12 +478,7 @@ vendor/lib64/libminksocket.so|33a9e55842c1927539b8ed5d30bb3ddb12599a5e
 vendor/lib64/libops.so|a6556e34f327dab506012db83169b5c53e7f1b0a
 vendor/lib64/libqisl.so|c79719eebc094c2af9561e8df2c158638b111b70
 vendor/lib64/librpmb.so|18b6b3297d117f093f2e4104384c4182052dd82f
-vendor/lib64/libsecureui.so|28f82685f84fb03637ec087dd4cace6122add1b3
-vendor/lib64/libsecureui_svcsock.so|6af612f057f4f28720d6db9b300b58c883da6539
-vendor/lib64/libspl.so|e2b3e2dd28b0eee567d72de696cd1e01288ae06f
 vendor/lib64/libssd.so|e255c1453e1ea5b7e02555bf3301791aba370baf
-vendor/lib64/libtzdrmgenprov.so|bdc078935051b6c9e16bbf7fc4a8241410cea97a
-vendor/lib64/vendor.qti.hardware.qseecom@1.0.so|1b4c92c07ed5ba3f053e10a11f2bc1232ad45375
 
 # ESE - from LA.UM.9.1.r1-12900-SMxxx0.0
 vendor/bin/hw/vendor.qti.esepowermanager@1.1-service|040212c2c39ca3f2090291dd3a7f49979e5003df
@@ -1155,22 +1145,6 @@ vendor/etc/thermald-devices.conf
 vendor/bin/time_daemon|48401d7f85c87aa3e12ce7b4a969a50cbf59c293
 vendor/etc/init/init.time_daemon.rc|b253ca2a498757e14e1d7a051bf504ae09218f51
 vendor/lib64/libtime_genoff.so|8bb116ad297a5e4a94da2f10509509cb6e863a5f
-
-# Trusted Execution Environment connector - from LA.UM.9.1.r1-12900-SMxxx0.0
-vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service|4167b12a9f09c52a4dc1555f243dec17051b8a23
-vendor/etc/init/vendor.qti.hardware.qteeconnector@1.0-service.rc|c966350ee67d3a7c73ca7184e3725264025d16f5
-vendor/lib64/hw/vendor.qti.hardware.qteeconnector@1.0-impl.so|8447345452fb3cdc687e7ec67612d9626983b033
-vendor/lib64/libGPQTEEC_vendor.so|d70f659c06a38dbae028f41ca6e0dece0ef1d5cd
-vendor/lib64/libGPTEE_vendor.so|92c0215dbd3271e597d536c259df44aac716a402
-vendor/lib64/libQTEEConnector_vendor.so|30e5fd8d4fff50083f44f6d0bd09f4bd287a8366
-vendor/lib64/vendor.qti.hardware.qteeconnector@1.0.so|4e08dcd830d319c1a56d108c037b1f76eb5060d4
-
-# Trusted User Interface - from LA.UM.9.1.r1-12900-SMxxx0.0
-vendor/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti|15378114c18fd1b1c8f9671f656396285ad1de48
-vendor/etc/init/vendor.qti.hardware.tui_comm@1.0-service-qti.rc|2cfc563d7e1579374f001c94588fae7835a12ffc
-vendor/lib64/libsi.so|18cb2a95df014db864d48fb152bb336c69f2ae2f
-vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0.so|b981b778b4f8955b1606956fe7a8a94fb0e738b9
-vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so|4ba792ee3234dca4cd7ebbd7b3f9003c800f51b4
 
 # VPP
 vendor/bin/vppservice
