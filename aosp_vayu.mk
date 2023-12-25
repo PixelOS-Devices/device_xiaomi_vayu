@@ -12,7 +12,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/xiaomi/vayu/device.mk)
 
 # Inherit common AOSP configurations
-$(call inherit-product, vendor/aosp/config/common.mk)
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
 PRODUCT_NAME := aosp_vayu
 PRODUCT_DEVICE := vayu
